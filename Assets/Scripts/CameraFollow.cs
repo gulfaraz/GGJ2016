@@ -10,9 +10,14 @@ public class CameraFollow : MonoBehaviour {
 	private float damping;
 	private bool smoothRotation;
 	private float rotationDamping;
+	private RaycastHit hit;
 
 	// Use this for initialization
 	void Start () {
+		setDefaults ();
+	}
+
+	void setDefaults() {
 		distance = 5.0f;
 		height = 3.0f;
 		damping = 5.0f;
@@ -31,6 +36,14 @@ public class CameraFollow : MonoBehaviour {
 				transform.rotation = Quaternion.Slerp (transform.rotation, wantedRotation, Time.deltaTime * rotationDamping);
 			} else {
 				transform.LookAt (target, target.up);
+			}
+
+			if (Physics.Raycast ((transform.position), (target.position - transform.position), out hit)) {
+				if (hit.collider.gameObject.tag == "Player") {
+					setDefaults ();
+				} else {
+					distance -= Time.deltaTime;
+				}
 			}
 		}
 	}

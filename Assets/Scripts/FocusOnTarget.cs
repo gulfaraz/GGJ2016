@@ -23,6 +23,7 @@ public class FocusOnTarget : MonoBehaviour {
 	void Update () {
 		if (enableFocus) {
 			riddleBox.text = "";
+			messageBox.text = "Press F";
 			if (Input.GetKey (KeyCode.F)) {
 				riddleBox.text = riddle;
 				cameraGameObject.transform.LookAt (target);
