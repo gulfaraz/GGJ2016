@@ -6,14 +6,12 @@ public class FocusOnTarget : MonoBehaviour {
 
 	private Transform target;
 	private bool enableFocus;
-	private Camera cameraGameObject;
 	private Text messageBox;
 	private Text riddleBox;
 	public string riddle;
 
 	// Use this for initialization
 	void Start () {
-		cameraGameObject = Camera.main;
 		target = gameObject.GetComponentInChildren<Transform> ();
 		messageBox = GameObject.FindGameObjectWithTag ("Message").GetComponent<Text> ();
 		riddleBox = GameObject.FindGameObjectWithTag ("Riddle").GetComponent<Text> ();
@@ -27,10 +25,6 @@ public class FocusOnTarget : MonoBehaviour {
 			if (Input.GetKey (KeyCode.F)) {
 				riddleBox.text = riddle;
 				messageBox.text = "";
-				cameraGameObject.transform.LookAt (target);
-				cameraGameObject.GetComponent<CameraFollow> ().focusTargetOn = true;
-			} else if (Input.GetKeyUp (KeyCode.F)) {
-				cameraGameObject.GetComponent<CameraFollow> ().focusTargetOn = false;
 			}
 		}
 	}
@@ -47,7 +41,6 @@ public class FocusOnTarget : MonoBehaviour {
 			enableFocus = false;
 			messageBox.text = "";
 			riddleBox.text = "";
-			cameraGameObject.GetComponent<CameraFollow> ().focusTargetOn = false;
 		}
 	}
 }
