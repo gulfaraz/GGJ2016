@@ -26,6 +26,7 @@ public class FocusOnTarget : MonoBehaviour {
 			messageBox.text = "Press F";
 			if (Input.GetKey (KeyCode.F)) {
 				riddleBox.text = riddle;
+				messageBox.text = "";
 				cameraGameObject.transform.LookAt (target);
 				cameraGameObject.GetComponent<CameraFollow> ().focusTargetOn = true;
 			} else if (Input.GetKeyUp (KeyCode.F)) {

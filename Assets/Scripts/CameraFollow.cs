@@ -39,7 +39,7 @@ public class CameraFollow : MonoBehaviour {
 			}
 
 			if (Physics.Raycast ((transform.position), (target.position - transform.position), out hit)) {
-				if (hit.collider.gameObject.tag == "Player") {
+				if (!hit.collider.isTrigger && hit.collider.gameObject.tag == "Player") {
 					setDefaults ();
 				} else {
 					distance -= Time.deltaTime;
